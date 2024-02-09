@@ -15,8 +15,9 @@ from pydantic import BaseModel
 import shutil
 
 import os
+from decouple import config
 # Remplacez 'NOM_DE_LA_VARIABLE' par le nom réel de votre variable d'environnement
-cle_api = os.environ['openapi']
+cle_api =config("openapi")
 
 clientgpt = OpenAI(api_key= cle_api )
 client = vision.ImageAnnotatorClient.from_service_account_file("key.json")
