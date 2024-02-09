@@ -61,6 +61,7 @@ class AudioFile(BaseModel):
 
 @app.post("/upload/")
 async def upload_audio(file: UploadFile = File(...)):
+    print(os.getcwd())
     path = "audio.mp3"
     with open(path, "wb") as buffer:
         shutil.copyfileobj(file.file, buffer)
