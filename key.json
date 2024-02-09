@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "robust-episode-413810",
+  "private_key_id": "997530fc30021c3c8a9b48f433eac7dfd24b1f63",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDp9CKrLasknRIy\nKKpeqLENz2JuRdK3UcGhUgRR10iHzzm2vtUPa5ohcxya7to97abqb0ndFN98Gwf/\ncXvjfQtaK0b5b1W/AFqa3y4ixmc1QLl8YgOYJ32oBLGQ1nPDHvvccjuPpvuTQg25\nY+SUEb2NIJCt61u0v5uqb3dN0zeg2Juv9SLkbvHT5vtp5mqmwpxFiyWoElE7DJUg\nBpxMYkd3wabGqSsxghq0fstX5xUgdAM0XgkEv670dyf4Xv+SDSKs0IF8Ru9Ieetw\nkyvzpn0LbHMUYznBGWeL5oAXxJxfaBK1ViJcyhc5u5iwhHS6FrrLy1Ciuf1DvquH\nIYNKo40pAgMBAAECggEAGRLkJdA50c1fQj6zPryp6CrgN+UWF7VkkR11Ds/pyztp\nijVS6KmNvfTEPbMocv9t1p2Zjx8h8h9ECMuw/VE9JptxioF1EUjQjR1rCIlWzaFr\nl8H59GRUHm4tWTJwuvpuwCJCkatx9kb7qVFEUd3CYNYbB3bMb/dir74tTUscQMnN\n057AJBvD7KEGT/kWTESiQE8V3Gfc1BcPYefi2jj3EdZF0gKgHfyfITBswK2WpGpp\nS8E9HOwTJp4S99g3Zdo3j+rqJOJRiV3TI1zP+fpANDcwDGBvv6YVKQz8YN9Z5WEz\nG36RJ/2m1BfwVUrUalEjI3jhsrirfzoW1psmxSCcEQKBgQD457zL4zH+38LehiLR\nR8iE0eRVcDcY5Ox8Bvy1ds/5a2Rgbf6iga8xAifikhsg7kMoFfoMBLjg6mhL/pZZ\nW3n5etUPX2OAJSNxN/jG4vRLcTRHso5jqezgNIoK/WyaKYADHKRUi4fdtYiLR8u9\n5wgM3UyyTIWTzdKEaOI5+jiO2QKBgQDwn0vX3Tx+BFbQHABGEA7Heacy738AFP+a\nFLI8qcvKIEUtcVHuT5qZC8rarpzuE80VVkDuVC5BlVP0kRsBoRCIcw4JPTISWcD8\nHvSLIf21yvQCHyW7DFd06GbVcmjttIixZXiLbB2m6sr5ysbNcZKznQaDtVdQ1v3e\nR9RF5pWe0QKBgQCN1nCttwAsf5JqgAGjRMateXYmgdXD5+AjJVAokFYfieUfVk7+\nh+wvf0z/Pccb0uqOE0f0RVSdRra8Z42ByjENy8NSCUeIJKG3yO+JVpdjzlS+bq/Z\nd2G2ufnYHWYfy3pZS58RVpnL68CtrfIae2cI/arRB+4uteE69xHDfCVysQKBgGnv\nZ9+oijpcxK+otEIkTa1qlL7rC/nIROPcGsB0bMEXRf2Et3J433Jj67ItT+/NDexH\n5hxHOXosOSMiQ0aLV5ELPnG43HORylH1eupKU72Wlajdd6oK+/H/Y06zqRiF8+xN\n5S1UsxVKp4QjzzShvNmQ105jJwbzMB+Ndho0M0kRAoGAdmePF8MQV5kVhwo2OJjk\njjlnoO2Ug5gno414Bo6QcJIZ/VDjffmShMuwdfmogcT+KpNjWlvszN43FNGC/VFY\nIQjXXOs4iXHwZmOvgIp3dkLTyxfQP/xvOyEyPsI5C5CKR0xXpNujwFU7gMpOK2nl\n41LcbUsVdf5FznQ6vLfQ+gY=\n-----END PRIVATE KEY-----\n",
+  "client_email": "computer-vision@robust-episode-413810.iam.gserviceaccount.com",
+  "client_id": "115606009828099733682",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/computer-vision%40robust-episode-413810.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}

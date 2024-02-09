@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enregistrement Audio</title>
+    <style>
+        body {
+            font-family: 'Alice', sans-serif;
+            text-align: center;
+            background-color: #f0f0f0;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            color: #32373b;
+            margin-top: 20px;
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px;
+        }
+
+        button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+
+        audio {
+            margin-top: 20px;
+        }
+
+        form {
+            margin-top: 20px;
+        }
+
+        input[type="file"] {
+            display: none;
+        }
+
+        label {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        label:hover {
+            background-color: #0056b3;
+        }
+
+        #voice {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1> Vision Plus </h1>
+    <br> 
+    <h3  >Voice chat</h3>
+   
+    <button id="recordButton" style=" align-items: center; justify-content: center;">
+        <img src="https://img.icons8.com/ios-filled/50/000000/microphone.png" style="width: 20px; height: 20px; margin-right: 5px;" alt="Microphone Icon">
+        Record
+    </button>
+    <button id="submit" disabled>Sumit</button>
+    <br>
+    <audio id="audio" controls><source src="" type="audio/mp3"></audio>
+    
+    <br><br>
+    <h3>Ocr & Object detection</h3>
+    <form action="/ocr/" method="post" enctype="multipart/form-data">
+        <label for="imageInput">Select</label>
+        <input type="file" name="image_ocr" id="imageInput" accept="image/*">
+        <button type="submit">Upload</button>
+    </form>
+
+    <h3>All Audio Response</h3>
+    <audio controls id="voice">
+        <source src="" type="audio/mp3">
+        Your browser does not support the audio element.
+    </audio>
+
+    <script>
+        document.querySelector("form").addEventListener("submit", async (event) => {
+            event.preventDefault();
+            const formData = new FormData(event.target);
+            const response = await fetch("/ocr/", {
+                method: "POST",
+                body: formData
+            });
+            const blob = await response.blob();
+            const audioPlayer = document.getElementById("voice"); 
+            audioPlayer.src = URL.createObjectURL(blob);
+        });
+    </script>
+      
+    <script>
+        let mediaRecorder;
+        let chunks = [];
+        let isRecording = false;
+
+        navigator.mediaDevices.getUserMedia({ audio: true })
+            .then(function(stream) {
+                mediaRecorder = new MediaRecorder(stream);
+
+                mediaRecorder.ondataavailable = function(e) {
+                    chunks.push(e.data);
+                };
+
+                mediaRecorder.onstop = function() {
+                    let audioBlob = new Blob(chunks, { 'type' : 'audio/mp3' });
+                    let audioUrl = URL.createObjectURL(audioBlob);
+                    let audioElement = document.getElementById('audio');
+                    audioElement.src = audioUrl;
+                    document.getElementById('submit').disabled = false;
+                };
+            })
+            .catch(function(err) {
+                console.error('Permission denied or error accessing microphone:', err);
+            });
+
+        document.getElementById('recordButton').addEventListener('click', function() {
+            if (!isRecording) {
+                chunks = [];
+                mediaRecorder.start();
+                document.getElementById('recordButton').textContent = 'Stop';
+                isRecording = true;
+                document.getElementById('submit').disabled = true;
+            } else {
+                mediaRecorder.stop();
+                document.getElementById('recordButton').textContent = 'record';
+                isRecording = false;
+            }
+        });
+
+        document.getElementById('submit').addEventListener('click',  function() {
+            if (chunks.length > 0) {
+                let formData = new FormData();
+                let audioBlob = new Blob(chunks, { 'type' : 'audio/wav' });
+                formData.append('file', audioBlob, 'audio.wav');
+                
+                fetch('/upload/', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => response.blob())
+                .then(blob => {
+                   const audioPlayer = document.getElementById("voice");
+                   audioPlayer.src = URL.createObjectURL(blob); 
+            
+                })
+                .catch(error => console.error('Error:', error));
+            } else {
+                alert('Aucun enregistrement audio à soumettre.');
+            }
+        });
+    </script>
+</body>
+</html>

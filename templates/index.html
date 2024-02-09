@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text to Speech</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        label {
+            margin-bottom: 10px;
+            color: #555;
+        }
+
+        input[type="text"] {
+            padding: 8px;
+            margin-bottom: 20px;
+            width: 300px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        input[type="submit"] {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        #audio_player {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Glass, {{ name }}!</h1>
+    <!--form action="/process-text" method="post">
+        <label for="text_input">Enter Text:</label><br>
+        <input type="text" id="text_input" name="text_input"><br>
+        <input type="submit" value="Submit">
+    </form>
+    <h1>Text entré:  {{ text }}!</h1-->
+    <form action="/generate-audio/" method="post">
+        <label for="text_audio">Enter Text:</label><br>
+        <input type="text" id="text_audio" name="textaudio"><br>
+        <input type="submit" value="Generate Audio">
+    </form>
+
+    <audio controls id="audio_player">
+        <source src="" type="audio/mp3">
+        Your browser does not support the audio element.
+    </audio>
+    
+    <script>
+        document.querySelector("form").addEventListener("submit", async (event) => {
+            event.preventDefault();
+            const formData = new FormData(event.target);
+            const response = await fetch("/generate-audio/", {
+                method: "POST",
+                body: formData
+            });
+            const blob = await response.blob();
+            const audioPlayer = document.getElementById("audio_player");
+            audioPlayer.src = URL.createObjectURL(blob);
+        });
+    </script>
+</body>
+</html>
