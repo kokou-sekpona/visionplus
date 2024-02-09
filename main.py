@@ -55,13 +55,27 @@ async def ttsp(request: Request):
 
 
 
+import os
 
+# Obtenez le répertoire du script Python en cours d'exécution
+repertoire_script = os.path.dirname(os.path.abspath(__file__))
+
+# Obtenez la liste des fichiers dans le même répertoire
+fichiers_dans_repertoire = [f for f in os.listdir(repertoire_script) if os.path.isfile(os.path.join(repertoire_script, f))]
+
+# Affichez la liste des fichiers
+print("Fichiers dans le même répertoire :")
+for fichier in fichiers_dans_repertoire:
+    print(fichier)
+	
 class AudioFile(BaseModel):
     file_path: str
 
 @app.post("/upload/")
 async def upload_audio(file: UploadFile = File(...)):
     print(os.getcwd())
+    #print(os.listdir())
+    print(os.path.exists("/app/key.json"))
     path = "audio.mp3"
     with open(path, "wb") as buffer:
         shutil.copyfileobj(file.file, buffer)
