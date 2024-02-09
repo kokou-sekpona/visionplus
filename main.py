@@ -15,7 +15,7 @@ from pydantic import BaseModel
 import shutil
 
 
-clientgpt = OpenAI(api_key="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" )
+clientgpt = OpenAI(api_key="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" )
 client = vision.ImageAnnotatorClient.from_service_account_file("key.json")
 #from six.moves import queue
 
