@@ -92,11 +92,13 @@ async def upload_audio(file: UploadFile = File(...)):
 
 
 @app.post("/vision/")
-async def ocrtext(file: UploadFile = File(...)):
+async def ocrtext(request: Request):
+    print("Debut000")
+    form_data = await request.form()
+    file = form_data["image_ocr"]
     path = "im.png"
     with open(path, "wb") as buffer:
-        shutil.copyfileobj(file.file, buffer)
-    print("Debut requete1")
+            shutil.copyfileobj(file.file, buffer) 
     print("Debut du recog")
     text=ocr1(path=path) 
     text += localize_objects(path=path) 
