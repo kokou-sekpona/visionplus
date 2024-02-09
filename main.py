@@ -61,14 +61,18 @@ class AudioFile(BaseModel):
 
 @app.post("/upload/")
 async def upload_audio(file: UploadFile = File(...)):
-        path = "audio.mp3"
-        with open(path, "wb") as buffer:
-            shutil.copyfileobj(file.file, buffer)
-        print("speecgpt")
-        text = speechgpt(path)
-	return {"hello":text}
-       
-
+    path = "audio.mp3"
+    with open(path, "wb") as buffer:
+        shutil.copyfileobj(file.file, buffer)
+    print("speecgpt")
+    text = speechgpt(path)
+    print("save succesfful", text)
+    text = f"{chat(text)}"
+    lang = "en"
+    mp3 = BytesIO()
+    gTTS(text=text, lang=lang).write_to_fp(mp3)
+    mp3.seek(0)
+    return StreamingResponse(mp3, media_type="audio/mp3")
 
 
 @app.post("/ocr")
