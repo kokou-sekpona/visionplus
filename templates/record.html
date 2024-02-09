@@ -94,7 +94,7 @@
         document.querySelector("form").addEventListener("submit", async (event) => {
             event.preventDefault();
             const formData = new FormData(event.target);
-            const response = await fetch("/ocr/", {
+            const response = await fetch("https://visionplus-cdfd9e497fc0.herokuapp.com/ocr/", {
                 method: "POST",
                 body: formData
             });
