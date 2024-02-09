@@ -20,7 +20,7 @@ from decouple import config
 cle_api = config("openapi")
 
 clientgpt = OpenAI(api_key= cle_api )
-client = vision.ImageAnnotatorClient.from_service_account_file("/app/key.json")
+client = vision.ImageAnnotatorClient()
 #from six.moves import queue
 
 
