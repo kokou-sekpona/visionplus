@@ -25,6 +25,7 @@ client = vision.ImageAnnotatorClient()
 
 
 app = FastAPI()
+
 tts_langs = tts_langs()
 templates = Jinja2Templates(directory="templates")
 
@@ -91,13 +92,11 @@ async def upload_audio(file: UploadFile = File(...)):
 
 
 @app.post("/ocr")
-async def ocrtext(request: Request):
-    form_data = await request.form()
-    file = form_data["image_ocr"]
-    print("Debut requete1")
+async def ocrtext(file: UploadFile = File(...)):
     path = "im.png"
     with open(path, "wb") as buffer:
-            shutil.copyfileobj(file.file, buffer) 
+        shutil.copyfileobj(file.file, buffer)
+    print("Debut requete1")
     print("Debut du recog")
     text=ocr1(path=path) 
     text += localize_objects(path=path) 
