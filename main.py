@@ -65,8 +65,9 @@ async def upload_audio(file: UploadFile = File(...)):
         path = "audio.mp3"
         with open(path, "wb") as buffer:
             shutil.copyfileobj(file.file, buffer)
-        
+        print("Voila:  ", "bonjour")
         text = speechgpt(path)
+	print("Voila2:  ", "bonjour")
         text = f"{chat(text)}"
         lang = "en"
         mp3 = BytesIO()
