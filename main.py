@@ -95,21 +95,17 @@ async def ocrtext(request: Request):
     form_data = await request.form()
     file = form_data["image_ocr"]
     path = "im.png"
-    try:
-        with open(path, "wb") as buffer:
+    with open(path, "wb") as buffer:
             shutil.copyfileobj(file.file, buffer) 
-        
-        text=ocr1(path=path) 
-        text += localize_objects(path=path) 
-        print("fin du text")     
-        lang="en"
-        mp3 = BytesIO()
-        gTTS(text=text, lang=lang).write_to_fp(mp3)
-        mp3.seek(0)
-        return StreamingResponse(mp3, media_type="audio/mp3")
-    
-    except Exception as e:
-        return JSONResponse(content={"error": str(e)}, status_code=500)
+    print("Debut du recog")
+    text=ocr1(path=path) 
+    text += localize_objects(path=path) 
+    print("fin du text")     
+    lang="en"
+    mp3 = BytesIO()
+    gTTS(text=text, lang=lang).write_to_fp(mp3)
+    mp3.seek(0)
+    return StreamingResponse(mp3, media_type="audio/mp3")
     
 
 """import openai 
