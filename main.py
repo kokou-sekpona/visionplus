@@ -14,8 +14,11 @@ from openai import OpenAI
 from pydantic import BaseModel
 import shutil
 
+import os
+# Remplacez 'NOM_DE_LA_VARIABLE' par le nom réel de votre variable d'environnement
+cle_api = os.environ['openapi']
 
-clientgpt = OpenAI(api_key="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" )
+clientgpt = OpenAI(api_key= cle_api )
 client = vision.ImageAnnotatorClient.from_service_account_file("key.json")
 #from six.moves import queue
 
