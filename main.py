@@ -20,7 +20,7 @@ from decouple import config
 cle_api = config("openapi")
 
 clientgpt = OpenAI(api_key= cle_api )
-client = vision.ImageAnnotatorClient.from_service_account_file("./key.json")
+client = vision.ImageAnnotatorClient.from_service_account_file("/app/key.json")
 #from six.moves import queue
 
 
@@ -62,7 +62,7 @@ repertoire_script = os.path.dirname(os.path.abspath(__file__))
 
 # Obtenez la liste des fichiers dans le même répertoire
 fichiers_dans_repertoire = [f for f in os.listdir(repertoire_script) if os.path.isfile(os.path.join(repertoire_script, f))]
-
+print(fichiers_dans_repertoire)
 # Affichez la liste des fichiers
 print("Fichiers dans le même répertoire :")
 for fichier in fichiers_dans_repertoire:
