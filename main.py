@@ -91,7 +91,7 @@ async def upload_audio(file: UploadFile = File(...)):
     return StreamingResponse(mp3, media_type="audio/mp3")
 
 
-@app.post("/ocr")
+@app.post("/vision/")
 async def ocrtext(file: UploadFile = File(...)):
     path = "im.png"
     with open(path, "wb") as buffer:
