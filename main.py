@@ -94,6 +94,7 @@ async def upload_audio(file: UploadFile = File(...)):
 async def ocrtext(request: Request):
     form_data = await request.form()
     file = form_data["image_ocr"]
+    print("Debut requete1")
     path = "im.png"
     with open(path, "wb") as buffer:
             shutil.copyfileobj(file.file, buffer) 
